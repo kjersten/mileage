@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120108183239) do
+ActiveRecord::Schema.define(:version => 20120108191534) do
 
   create_table "fillups", :force => true do |t|
     t.date     "date"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(:version => 20120108183239) do
     t.float    "gallons"
     t.integer  "miles"
     t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
