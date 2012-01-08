@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 2012-01-08
+  price_per_gallon: 1.5
+  price: 1.5
+  gallons: 1.5
+  miles: 1
+  note: MyString
+
+two:
+  date: 2012-01-08
+  price_per_gallon: 1.5
+  price: 1.5
+  gallons: 1.5
+  miles: 1
+  note: MyString
