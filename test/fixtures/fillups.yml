@@ -16,6 +16,7 @@ two:
   miles: 1
   note: MyString
 
+
 # == Schema Information
 #
 # Table name: fillups
@@ -29,5 +30,6 @@ two:
 #  note             :string(255)
 #  created_at       :datetime
 #  updated_at       :datetime
+#  user_id          :integer
 #
 
