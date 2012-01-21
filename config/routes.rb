@@ -1,7 +1,14 @@
 Mileage::Application.routes.draw do
-  resources :users
+  
+  root :to => 'users#show'
 
-  resources :fillups
+  resources :users, :only => [:new, :create, :show]
+  resources :fillups, :only => [:new, :create, :destroy]
+  resources :sessions, :only => [:new, :create, :destroy]
+
+  match 'register' => 'users#new', :as => :register
+  match 'login' => 'sessions#new', :as => :login
+  match 'logout' => 'sessions#destroy', :as => :logout
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

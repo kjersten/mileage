@@ -1,15 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
+<h2>Welcome <%= @user.name %>!</h2>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
+<p>Latest MPG: ?</p>
+<p>Overall MPG: ?</p>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to "Add a new gas fill-up" %><br/>
+<br/>
+<%= link_to "Log out", logout_path %>

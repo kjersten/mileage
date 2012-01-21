@@ -1,0 +1,26 @@
+<h1>Log in</h1>
+
+<% if @user && @user.errors.any? %>
+  <div id="error_explanation">
+    <h2>Form is invalid</h2>
+    <ul>
+      <% for message in @user.errors.full_messages %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_tag sessions_path do %>
+  <div>
+    <%= label_tag :email %>
+    <%= text_field_tag :email, params[:email] %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+  <div class="actions"><%= submit_tag "Log in" %></div>
+<% end %>
+<br/>
+<h3>Don't have an account?</h3>
+<%= link_to "Register", register_path %>
