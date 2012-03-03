@@ -4,8 +4,6 @@ first_user:
   name: Already Here
   email: already_here@test.com
 
-
-
 # == Schema Information
 #
 # Table name: users
