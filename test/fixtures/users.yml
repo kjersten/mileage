@@ -4,6 +4,12 @@ first_user:
   name: Already Here
   email: already_here@test.com
 
+login_user:
+  name: Test User
+  email: test@test.com
+  password_digest: $2a$10$AWc//VJW2MhEEYj8CL7fcOdboepTPZmXav1sIy0ofuz6AuRgdJqWi
+  # password_digest corresponds to 'test'
+
 # == Schema Information
 #
 # Table name: users

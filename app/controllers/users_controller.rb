@@ -18,7 +18,7 @@ class UsersController < ApplicationController
          session[:user_id] = @user.id
         format.html { redirect_to root_url, notice: 'Your account has been created!'}
       else
-        format.html { render action: "new" }
+        format.html { render "new" }
       end
     end
   end

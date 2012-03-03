@@ -61,7 +61,6 @@ describe "Login and Registration:" do
       page.should have_selector 'li', :text => "Password must be at least 4 characters"
     end
 
-
     # password too long
     it "gives an error if I register with a long password" do
       fill_in 'user[email]', :with => 'user@test.com'
@@ -84,16 +83,6 @@ describe "Login and Registration:" do
       page.should have_selector 'li', :text => "Password doesn't match confirmation"
     end
 
-    # success!
-    it "signs me in" do
-      fill_in 'user[name]', :with => 'Test User'
-      fill_in 'user[email]', :with => 'user@test.com'
-      fill_in 'user[password]', :with => 'test'
-      fill_in 'user[password_confirmation]', :with => 'test'
-      click_button 'Register'
-      page.should have_selector '#notice', :text => 'Your account has been created!'
-    end
-
     # duplicate user
     it "gives an error if you try to register with the same email twice" do
       fill_in 'user[name]', :with => 'User with Duplicate Email'
@@ -105,11 +94,52 @@ describe "Login and Registration:" do
       page.should have_selector 'li', :text => "Email has already been taken"
     end
 
+    # successful registration
+    it "registers a new account for me" do
+      fill_in 'user[name]', :with => 'Test User'
+      fill_in 'user[email]', :with => 'user@test.com'
+      fill_in 'user[password]', :with => 'test'
+      fill_in 'user[password_confirmation]', :with => 'test'
+      click_button 'Register'
+      page.should have_selector '#notice', :text => 'Your account has been created!'
+    end
+
   end
 
-  describe "Login Page" do
+  describe "Login Page:" do
+    fixtures :users
     before { visit root_path }
-    it { should have_selector('h1', text: 'Log In') }
+    it { should have_selector 'h1', :text => 'Log In' }
+
+    # successful login
+    it "logs me in when I have an existing account" do
+      fill_in 'email', :with => 'test@test.com'
+      fill_in 'password', :with => 'test'
+      click_button 'Log in'
+      page.should have_selector '#notice', :text => 'Logged in!'
+      page.should have_link 'Log out'
+      click_link 'Log out'
+      page.should have_selector 'h1', :text => 'Log In'
+    end
+
+    # valid user, invalid password
+    it "logs me in when I have an existing account" do
+      fill_in 'email', :with => 'francine@test.com'
+      fill_in 'password', :with => 'test'
+      click_button 'Log in'
+      page.should have_selector '#error_explanation'
+      page.should have_selector 'h2', :text => "Invalid email or password"
+    end
+
+    # user not found
+    it "logs me in when I have an existing account" do
+      fill_in 'email', :with => 'test@test.com'
+      fill_in 'password', :with => 'abcdefgh'
+      click_button 'Log in'
+      page.should have_selector '#error_explanation'
+      page.should have_selector 'h2', :text => "Invalid email or password"
+    end
+
   end
 
 end

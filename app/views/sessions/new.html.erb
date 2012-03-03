@@ -1,13 +1,8 @@
 <h1>Log In</h1>
 
-<% if @user && @user.errors.any? %>
+<% if flash[:error] %>
   <div id="error_explanation">
-    <h2>Form is invalid</h2>
-    <ul>
-      <% for message in @user.errors.full_messages %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+    <h2><%= flash[:error] %></h2>
   </div>
 <% end %>
 <%= form_tag sessions_path do %>
