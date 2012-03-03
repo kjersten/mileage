@@ -5,6 +5,7 @@ describe "Login and Registration:" do
   subject { page }
 
   describe "Registration:" do
+    fixtures :users
     before { visit register_path }
     it { should  have_selector('h1', text: 'Sign Up') }
 
@@ -95,14 +96,13 @@ describe "Login and Registration:" do
 
     # duplicate user
     it "gives an error if you try to register with the same email twice" do
-      fill_in 'user[name]', :with => 'Test User'
-      fill_in 'user[email]', :with => 'user@test.com'
+      fill_in 'user[name]', :with => 'User with Duplicate Email'
+      fill_in 'user[email]', :with => 'already_here@test.com'
       fill_in 'user[password]', :with => 'test'
       fill_in 'user[password_confirmation]', :with => 'test'
       click_button 'Register'
-#      page.should have_selector '#error_explanation'
-#      page.should have_selector 'li', :text => "Email has already been taken"
-      page.should have_selector '#notice', :text => 'Your account has been created!'
+      page.should have_selector '#error_explanation'
+      page.should have_selector 'li', :text => "Email has already been taken"
     end
 
   end
