@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120121125636) do
+ActiveRecord::Schema.define(:version => 20120304003655) do
 
   create_table "fillups", :force => true do |t|
     t.date     "date"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20120121125636) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "name"
+    t.string   "auth_token"
   end
 
 end

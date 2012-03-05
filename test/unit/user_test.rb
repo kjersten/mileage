@@ -8,6 +8,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -17,5 +18,7 @@ end
 #  created_at      :datetime
 #  updated_at      :datetime
 #  password_digest :string(255)
+#  name            :string(255)
+#  auth_token      :string(255)
 #
 

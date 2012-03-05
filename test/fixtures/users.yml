@@ -10,6 +10,7 @@ login_user:
   password_digest: $2a$10$AWc//VJW2MhEEYj8CL7fcOdboepTPZmXav1sIy0ofuz6AuRgdJqWi
   # password_digest corresponds to 'test'
 
+
 # == Schema Information
 #
 # Table name: users
@@ -19,5 +20,7 @@ login_user:
 #  created_at      :datetime
 #  updated_at      :datetime
 #  password_digest :string(255)
+#  name            :string(255)
+#  auth_token      :string(255)
 #
 
