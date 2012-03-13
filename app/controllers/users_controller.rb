@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-         session[:user_id] = @user.id
+        cookies[:auth_token] = user.auth_token
         format.html { redirect_to root_url, notice: 'Your account has been created!'}
       else
         format.html { render "new" }
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:user_id]) if session[:user_id]
+    @user = current_user
     if !@user
       redirect_to login_path
     end
