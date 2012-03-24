@@ -1,10 +1,13 @@
 Mileage::Application.routes.draw do
   
+  get "password_resets/new"
+
   root :to => 'users#show'
 
   resources :users, :only => [:new, :create, :show]
   resources :fillups, :only => [:new, :create, :destroy]
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :password_resets
 
   match 'register' => 'users#new', :as => :register
   match 'login' => 'sessions#new', :as => :login

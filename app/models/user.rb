@@ -9,10 +9,22 @@ class User < ActiveRecord::Base
   validates_length_of :password, :on => :create, :within => 4..20, :allow_blank => true,
     :too_short => "must be at least 4 characters", 
     :too_long => "cannot be longer than 20 characters"
-  validates_presence_of :name, :email, :password
+  validates_presence_of :name, :email, :password, :unless => :save_when_sending_password_reset
   validates_uniqueness_of :email
 
   before_create { generate_token(:auth_token) }
+
+  # password_reset_sent_at happened in the past 2 seconds?
+  def save_when_sending_password_reset
+    self.respond_to?(:password_reset_sent_at) && password_reset_sent_at && password_reset_sent_at > 2.seconds.ago
+  end
+
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
 
   def generate_token(column)
     begin
@@ -37,4 +49,3 @@ end
 #  name            :string(255)
 #  auth_token      :string(255)
 #
-
