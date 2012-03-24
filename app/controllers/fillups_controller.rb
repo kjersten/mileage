@@ -40,11 +40,12 @@ class FillupsController < ApplicationController
   # POST /fillups
   # POST /fillups.json
   def create
+    params["fillup"][:user_id] = current_user.id if current_user
     @fillup = Fillup.new(params[:fillup])
 
     respond_to do |format|
       if @fillup.save
-        format.html { redirect_to @fillup, notice: 'Fillup was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Fillup was successfully created.' }
         format.json { render json: @fillup, status: :created, location: @fillup }
       else
         format.html { render action: "new" }
