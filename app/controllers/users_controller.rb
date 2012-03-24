@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        cookies[:auth_token] = user.auth_token
+        cookies[:auth_token] = @user.auth_token
         format.html { redirect_to root_url, notice: 'Your account has been created!'}
       else
         format.html { render "new" }
