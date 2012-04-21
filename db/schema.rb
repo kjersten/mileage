@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120324143853) do
+ActiveRecord::Schema.define(:version => 20120416115456) do
 
   create_table "fillups", :force => true do |t|
     t.date     "date"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(:version => 20120324143853) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "upload_errors", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "record"
+    t.string   "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

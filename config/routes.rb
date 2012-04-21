@@ -9,6 +9,13 @@ Mileage::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   resources :password_resets
 
+  resources :fillups do
+    collection do
+      get :upload_history
+      post :upload
+    end
+  end
+
   match 'register' => 'users#new', :as => :register
   match 'login' => 'sessions#new', :as => :login
   match 'logout' => 'sessions#destroy', :as => :logout

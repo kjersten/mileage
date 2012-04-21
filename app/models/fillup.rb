@@ -7,6 +7,7 @@ class Fillup < ActiveRecord::Base
 
 end
 
+# TODO: drop price_per_gallon
 
 # == Schema Information
 #

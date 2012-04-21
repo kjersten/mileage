@@ -1,4 +1,7 @@
 class FillupsController < ApplicationController
+require 'csv'
+
+
   # GET /fillups
   # GET /fillups.json
   def index
@@ -30,6 +33,26 @@ class FillupsController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @fillup }
     end
+  end
+
+  def upload_history
+  end
+
+  def upload
+    uploaded_io = params[:history_file]
+    user_id = current_user.id
+    puts "current user id: " + user_id.to_s
+    CSV.parse(params[:history_file].read) do |r|
+      unless(r[0][/[A-Za-z]/])
+        date = r[0] && r[0][/^[01]?\d\/[0123]?\d\/[12][019]\d{2}/] ? Date.strptime(r[0], "%m/%d/%Y") : r[0]
+        miles = r[3].blank? ? "" :  r[3].gsub(/,/,'').to_i if r[3]
+        f = Fillup.create(:date => date, :price_per_gallon => r[1], :gallons => r[2], :miles => miles, :note => r[4], :user_id => user_id)
+        if(!f.errors.empty?)
+          UploadError.create(:user_id => user_id, :record => r, :reason => f.errors.first.join(" "))
+        end
+      end
+    end
+    redirect_to root_path, :notice => "File was uploaded successfully. We tried to import the data!"
   end
 
   # GET /fillups/1/edit

@@ -1,0 +1,19 @@
+<h1>Upload History</h1>
+
+<p>
+  Your file should be in CSV format, with the following fields in the following order:
+  <ol>
+    <li>Date in mm/dd/yyyy format</li>
+    <li>Price per Gallon</li>
+    <li>Number of Gallons</li>
+    <li>Number of Miles on Odometer</li>
+    <li>Note</li>
+  </ol>
+</p>
+
+<%= form_tag({:action => :upload}, :multipart => true) do %>
+  <div class="field">
+    <%= file_field_tag 'history_file' %>
+  </div>
+  <div class="actions"><%= submit_tag "Upload History File" %></div>
+<% end %>
