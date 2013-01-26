@@ -52,7 +52,7 @@ require 'csv'
         end
       end
     end
-    redirect_to root_path, :notice => "File was uploaded successfully. We tried to import the data!"
+    redirect_to root_path, :notice => "File was uploaded successfully."
   end
 
   # GET /fillups/1/edit
