@@ -109,33 +109,33 @@ describe "Login and Registration:" do
   describe "Login Page:" do
     fixtures :users
     before { visit root_path }
-    it { should have_selector 'h1', :text => 'Log In' }
+    it { should have_selector 'h2', :text => 'Log In' }
 
     # successful login
     it "logs me in when I have an existing account" do
       fill_in 'email', :with => 'test@test.com'
       fill_in 'password', :with => 'test'
-      click_button 'Log in'
+      click_button 'Sign in'
       page.should have_selector '#notice', :text => 'Logged in!'
       page.should have_link 'Log out'
       click_link 'Log out'
-      page.should have_selector 'h1', :text => 'Log In'
+      page.should have_selector 'h2', :text => 'Log In'
     end
 
     # valid user, invalid password
-    it "logs me in when I have an existing account" do
+    it "gives an error when a valid user submits an invalid password" do
       fill_in 'email', :with => 'francine@test.com'
       fill_in 'password', :with => 'test'
-      click_button 'Log in'
+      click_button 'Sign in'
       page.should have_selector '#error_explanation'
       page.should have_selector 'h2', :text => "Invalid email or password"
     end
 
     # user not found
-    it "logs me in when I have an existing account" do
+    it "gives an error when the user is not found" do
       fill_in 'email', :with => 'test@test.com'
       fill_in 'password', :with => 'abcdefgh'
-      click_button 'Log in'
+      click_button 'Sign in'
       page.should have_selector '#error_explanation'
       page.should have_selector 'h2', :text => "Invalid email or password"
     end
