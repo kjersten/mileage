@@ -11,20 +11,22 @@
 <% end %>
 <%= form_for @user do |f| %>
   <div>
-    <%= f.label :name %><br/>
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :email %><br/>
+    <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :password %><br/>
+    <%= f.label :password %>
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation %><br/>
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </div>
-<div class="actions"><%= f.submit "Register" %></div>
+  <div class="actions">
+    <%= f.submit "Register", :class => "btn btn-primary" %>
+  </div>
 <% end %>
