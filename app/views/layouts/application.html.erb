@@ -2,16 +2,23 @@
 <html>
 <head>
   <title>Mileage</title>
-  <%= stylesheet_link_tag    "bootstrap" %>
+  <%= stylesheet_link_tag    "jquery-ui-1.10.0.custom.min" %>
   <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "bootstrap" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div class="jacket">
 
-<%= yield %>
+  	<%= yield %>
 
   </div>
+  <%= javascript_include_tag "jquery-1.9.1.min" %>
+  <%= javascript_include_tag "jquery-ui-1.10.0.custom.min" %>
+  <%= javascript_include_tag "bootstrap" %>
+  <%= javascript_include_tag "application" %>
+  <script>
+    $(".datepicker").datepicker();
+  </script>
 </body>
 </html>

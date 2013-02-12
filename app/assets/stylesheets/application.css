@@ -4,6 +4,7 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
  *= require_tree . 
+ *= require jquery.ui.datepicker
 */
 body {
   padding-top: 40px;
@@ -12,3 +13,11 @@ body {
 .jacket {
   margin-left: 60px;
 }
+
+/* overriding JQuery UI stylesheet */
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+	background: #04c !important;
+	color: #fff!important;
+} 

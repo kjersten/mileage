@@ -11,28 +11,25 @@
     </div>
   <% end %>
 
+
   <div class="field">
-    <%= f.label :date %><br />
-    <%= f.date_select :date %>
+    <%= f.label :date %>
+    <%= f.text_field :date, :class => "datepicker" %>
   </div>
   <div class="field">
-    <%= f.label :price_per_gallon %><br />
-    <%= f.text_field :price_per_gallon %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br />
-    <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :gallons %><br />
+    <%= f.label :gallons %>
     <%= f.text_field :gallons %>
   </div>
   <div class="field">
-    <%= f.label :miles %><br />
-    <%= f.number_field :miles %>
+    <%= f.label :miles %>
+    <%= f.text_field :miles %>
   </div>
   <div class="field">
-    <%= f.label :note %><br />
+    <%= f.label :price_per_gallon %>
+    <%= f.text_field :price_per_gallon %>
+  </div>
+  <div class="field">
+    <%= f.label :note %>
     <%= f.text_field :note %>
   </div>
   <div class="actions">
