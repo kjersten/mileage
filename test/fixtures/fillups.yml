@@ -2,18 +2,18 @@
 
 one:
   date: 2012-01-08
-  price_per_gallon: 1.5
-  price: 1.5
-  gallons: 1.5
-  miles: 1
+  price_per_gallon: 2.984
+  price: 28.43
+  gallons: 9.45
+  miles: 56432
   note: MyString
 
 two:
-  date: 2012-01-08
-  price_per_gallon: 1.5
-  price: 1.5
-  gallons: 1.5
-  miles: 1
+  date: 2012-01-22
+  price_per_gallon: 3.456
+  price: 30.49
+  gallons: 10.03
+  miles: 56508
   note: MyString
 
 

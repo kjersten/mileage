@@ -1,9 +1,17 @@
 class Fillup < ActiveRecord::Base
 
-  belongs_to :user
+  after_initialize :default_values
 
   validates_presence_of :date, :gallons, :miles
   validates_numericality_of [:price_per_gallon, :price, :gallons, :miles], :allow_nil => true
+
+  belongs_to :user
+
+private
+
+  def default_values
+    self.date ||= Time.new
+  end
 
 end
 

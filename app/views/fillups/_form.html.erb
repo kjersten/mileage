@@ -14,7 +14,7 @@
 
   <div class="field">
     <%= f.label :date %>
-    <%= f.text_field :date, :class => "datepicker" %>
+    <%= f.text_field :date, :value => "#{@fillup.date.strftime '%m/%d/%Y'}", :class => "datepicker" %>
   </div>
   <div class="field">
     <%= f.label :gallons %>
