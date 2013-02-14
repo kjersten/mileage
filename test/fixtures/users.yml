@@ -1,16 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-first_user:
-  name: Already Here
-  email: already_here@test.com
-
-preexisting_user_for_login:
-  name: Test User
-  email: test@test.com
-  auth_token: 38PUNi7rkIRKHGyMOypWEg
-  password_digest: $2a$10$AWc//VJW2MhEEYj8CL7fcOdboepTPZmXav1sIy0ofuz6AuRgdJqWi
-  # password_digest corresponds to 'test'
-
 
 
 # == Schema Information

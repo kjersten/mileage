@@ -4,8 +4,11 @@ describe "Login and Registration:" do
 
   subject { page }
 
+  before :all do
+    FactoryGirl.create :user, first: true
+  end
+
   describe "Registration:" do
-    fixtures :users
     before { visit register_path }
     it { should  have_selector('h1', text: 'Sign Up') }
 
@@ -86,7 +89,7 @@ describe "Login and Registration:" do
     # duplicate user
     it "gives an error if you try to register with the same email twice" do
       fill_in 'user[name]', :with => 'User with Duplicate Email'
-      fill_in 'user[email]', :with => 'already_here@test.com'
+      fill_in 'user[email]', :with => 'test@test.com'
       fill_in 'user[password]', :with => 'test'
       fill_in 'user[password_confirmation]', :with => 'test'
       click_button 'Register'
@@ -107,7 +110,6 @@ describe "Login and Registration:" do
   end
 
   describe "Login Page:" do
-    fixtures :users
     before { visit root_path }
     it { should have_selector 'h2', :text => 'Log In' }
 
