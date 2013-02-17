@@ -3,7 +3,6 @@ development:
   adapter: postgresql
   encoding: unicode
   database: mileage_development
-  username: kjerstenelias
   pool: 5
   timeout: 5000
 
@@ -14,6 +13,5 @@ test:
   adapter: postgresql
   encoding: unicode
   database: mileage_test
-  username: kjerstenelias
   pool: 5
   timeout: 5000
