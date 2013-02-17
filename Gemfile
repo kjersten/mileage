@@ -7,8 +7,6 @@ gem 'rails', '~> 3.1.3'
 
 gem 'pg'
 gem 'bcrypt-ruby', '~> 3.0'
-gem 'jquery-rails', '~> 1.0'
-gem 'jquery-ui-rails', '~> 4.0'
 
 group :development, :test do
 # Pretty printed test output
@@ -25,6 +23,8 @@ group :assets do
   gem 'sass-rails',   '~> 3.1'
   gem 'coffee-rails', '~> 3.1'
   gem 'uglifier', '>=  1.0'
+  gem 'jquery-rails', '~> 1.0'
+  gem 'jquery-ui-rails', '~> 4.0'
 end
 
 # To use ActiveModel has_secure_password
