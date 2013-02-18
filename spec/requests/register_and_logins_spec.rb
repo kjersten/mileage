@@ -4,9 +4,7 @@ describe "Login and Registration:" do
 
   subject { page }
 
-  before :all do
-    FactoryGirl.create :user, first: true
-  end
+  let(:user) {FactoryGirl.create :user}
 
   describe "Registration:" do
     before { visit register_path }
@@ -89,7 +87,7 @@ describe "Login and Registration:" do
     # duplicate user
     it "gives an error if you try to register with the same email twice" do
       fill_in 'user[name]', :with => 'User with Duplicate Email'
-      fill_in 'user[email]', :with => 'test@test.com'
+      fill_in 'user[email]', :with => user.email
       fill_in 'user[password]', :with => 'test'
       fill_in 'user[password_confirmation]', :with => 'test'
       click_button 'Register'
@@ -115,8 +113,8 @@ describe "Login and Registration:" do
 
     # successful login
     it "logs me in when I have an existing account" do
-      fill_in 'email', :with => 'test@test.com'
-      fill_in 'password', :with => 'test'
+      fill_in 'email', :with => user.email
+      fill_in 'password', :with => user.password
       click_button 'Sign in'
       page.should have_selector '#notice', :text => 'Logged in!'
       page.should have_link 'Log out'
@@ -124,7 +122,7 @@ describe "Login and Registration:" do
       page.should have_selector 'h2', :text => 'Log In'
     end
 
-    # valid user, invalid password
+    # user not found
     it "gives an error when a valid user submits an invalid password" do
       fill_in 'email', :with => 'francine@test.com'
       fill_in 'password', :with => 'test'
@@ -133,7 +131,7 @@ describe "Login and Registration:" do
       page.should have_selector 'h2', :text => "Invalid email or password"
     end
 
-    # user not found
+    # valid user, invalid password
     it "gives an error when the user is not found" do
       fill_in 'email', :with => 'test@test.com'
       fill_in 'password', :with => 'abcdefgh'
