@@ -84,6 +84,16 @@ describe "Login and Registration:" do
       page.should have_selector 'li', :text => "Password doesn't match confirmation"
     end
 
+    # password but no password confirmation
+    it "gives an error if the password confirmation is not present" do
+      fill_in 'user[email]', :with => 'user@test.com'
+      fill_in 'user[name]', :with => 'Test User'
+      fill_in 'user[password]', :with => 'test'
+      click_button 'Register'
+      page.should have_selector '#error_explanation'
+      page.should have_selector 'li', :text => "Password doesn't match confirmation"
+    end
+
     # duplicate user
     it "gives an error if you try to register with the same email twice" do
       fill_in 'user[name]', :with => 'User with Duplicate Email'
