@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   # don't validate if saving during "send_password_reset" method
   validates_presence_of :name, :email, :password, :unless => :save_when_sending_password_reset
 
-  before_create { generate_token(:auth_token) }
+  before_create { generate_auth_token }
 
   # password_reset_sent_at happened in the past 2 seconds?
   def save_when_sending_password_reset
@@ -21,16 +21,18 @@ class User < ActiveRecord::Base
   end
 
   def send_password_reset
-    generate_token(:password_reset_token)
+    self.password_reset_token = User.generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     self.save!
     UserMailer.password_reset(self).deliver
   end
 
-  def generate_token(column)
-    begin
-      self[column] = SecureRandom.urlsafe_base64
-    end while User.exists?(column => self[column])
+  def generate_auth_token
+    self.auth_token = User.generate_token(:auth_token)
+  end
+
+  def self.generate_token(column)
+    return SecureRandom.urlsafe_base64
   end
 
 end

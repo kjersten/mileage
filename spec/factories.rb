@@ -18,17 +18,19 @@ FactoryGirl.define do
 
   factory :user do
     ignore do
-      first false
+      pw_reset false
     end
 
     sequence :name do |n| 
-      "Test User#{n unless first}"
+      "Test User#{n}"
     end
     sequence :email do |n| 
-      "test#{n unless first}@test.com" 
+      "test#{n}@test.com" 
     end
     password "test"
     password_confirmation "test"
+    password_reset_token { pw_reset ? User.generate_token(:password_reset_token) : nil }
+    password_reset_sent_at { pw_reset ? Time.zone.now : nil }
   end
 	
 end
