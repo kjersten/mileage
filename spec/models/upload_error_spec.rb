@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UploadErrors do
+describe UploadError do
   pending "add some examples to (or delete) #{__FILE__}"
 end
 
