@@ -7,7 +7,7 @@ Mileage::Application.routes.draw do
   resources :users, :only => [:new, :create, :show]
   resources :fillups, :only => [:new, :create, :destroy]
   resources :sessions, :only => [:new, :create, :destroy]
-  resources :password_resets
+  resources :password_resets, :only => [:new, :create, :edit, :update]
 
   resources :fillups do
     collection do
