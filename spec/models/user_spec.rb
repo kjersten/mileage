@@ -1,11 +1,23 @@
 require 'spec_helper'
 
-describe Fillup do
+describe User do
   
-    it "should populate an empty fillup with today's date" do
-      fillup = Fillup.new
-      fillup.date.strftime('%m/%d/%Y').should == Time.new.strftime('%m/%d/%Y')
+  describe "#send_password_reset" do
+
+    let(:user) {FactoryGirl.create(:user)}
+
+    it "initially, password reset fields should be blank" do
+      user.password_reset_token.should be_nil
+      user.password_reset_sent_at.should be_nil
     end
+
+    it "should update password reset fields" do
+      user.send_password_reset
+      user.password_reset_token.should_not be_nil
+      user.password_reset_sent_at.should > 1.minutes.ago
+    end
+
+  end
 
 
 end
