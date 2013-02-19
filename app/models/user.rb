@@ -10,9 +10,15 @@ class User < ActiveRecord::Base
     :too_short => "must be at least 4 characters", 
     :too_long => "cannot be longer than 20 characters"
   validates_uniqueness_of :email
-  validates_presence_of :name, :email, :password
+  # don't validate if saving during "send_password_reset" method
+  validates_presence_of :name, :email, :password, :unless => :save_when_sending_password_reset
 
   before_create { generate_token(:auth_token) }
+
+  # password_reset_sent_at happened in the past 2 seconds?
+  def save_when_sending_password_reset
+    self.respond_to?(:password_reset_sent_at) && password_reset_sent_at && password_reset_sent_at > 2.seconds.ago
+  end
 
   def send_password_reset
     generate_token(:password_reset_token)
